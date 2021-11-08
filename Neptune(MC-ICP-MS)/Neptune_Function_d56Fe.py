@@ -183,7 +183,7 @@ def Delta(X,Y,Z):
     sigma_2=(Y[3]**2+(X[3]**2+Z[3]**2)/4)**0.5*1000
     
     result=np.c_[delta,sigma_2]
-    result = pd.DataFrame(result)
-    result.index=['δ56Fe','δ57Fe','δ58Fe']
-    result.columns=['‰','2sd']
-    return(result)
+    result = pd.DataFrame(result).T
+    result.columns=['δ56Fe','δ57Fe','δ58Fe']
+    result.index=['‰','2sd']
+    return result
