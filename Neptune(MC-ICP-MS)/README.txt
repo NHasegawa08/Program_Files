@@ -1,2 +1,3 @@
 Neptune (MC-ICP-MS) のデータ解析用のプログラムです。
-Neptune_function.RとNeptune_Data_Analyzer.Rの2つで1つのプログラムになります。
+Neptune_FunctionとNeptune_Data_Analyzerの2つで1つのプログラムになります。
+Python版とR版で基本的に違いはありません。
