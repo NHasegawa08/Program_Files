@@ -72,8 +72,7 @@ for(i in 1:8){
 # 試料データ:sample1
 sample1<-matrix(nrow=60,ncol=8)
 for(i in 1:60){
-  for(j in 1:8){
-    sample1[i,j]<-as.numeric(x2[i,j+1])}}
+  for(j in 1:8){sample1[i,j]<-as.numeric(x2[i,j+1])}}
 
 # sample1 <- sample1 -(blk1_ave)
 for(i in 1:60){
@@ -146,7 +145,7 @@ for (m in 1:3){
     else{judge2.2[i,2*m+1]<-"ok"}}}
 
 #結果の描画
-ResultPlot<-function(data,x,y,name){
+PlotResult<-function(data,x,y,name){
   ggplot()+
     geom_line(data=data,aes(x=number,y=data[,x],group=1),color="gray")+
     geom_point(data=data,aes(x=number,y=data[,x],color=data[,y]),size=4)+
@@ -157,10 +156,10 @@ ResultPlot<-function(data,x,y,name){
     theme(legend.title = element_blank())
 }
 
-Judge1<-ResultPlot(judge1.2,6,7,"blk 56Fe CPS")
-Judge2<-ResultPlot(judge2.2,2,3,"56Fe/54Fe")
-Judge3<-ResultPlot(judge2.2,4,5,"57Fe/54Fe")
-Judge4<-ResultPlot(judge2.2,6,7,"58Fe/54Fe")
+Judge1<-PlotResult(judge1.2,6,7,"blk 56Fe CPS")
+Judge2<-PlotResult(judge2.2,2,3,"56Fe/54Fe")
+Judge3<-PlotResult(judge2.2,4,5,"57Fe/54Fe")
+Judge4<-PlotResult(judge2.2,6,7,"58Fe/54Fe")
 
 #判定結果を出力
 gridExtra::grid.arrange(Judge1,Judge2,Judge3,Judge4,ncol=2)
@@ -182,7 +181,7 @@ colnames(result)<-c("56Fe/54Fe","57Fe/54Fe","58Fe/54Fe")
 return(result)}
 
 
-# Delta: 最終的なδを計算する(X: IRMM1, Y: Sample, Z: IRMM2)
+# Delta: デルタ値を計算する(X: standard1, Y: Sample, Z: standard2)
 Delta<-function(X,Y,Z){
   IRMM<-(X[1,]+Z[1,])/2
   SD<-2*sqrt(((X[1,]-IRMM)^2+(Z[1,]-IRMM)^2))

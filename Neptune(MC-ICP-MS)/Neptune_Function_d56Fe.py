@@ -2,31 +2,23 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+#Read: blk, sampleファイルの読み込み
 def Read(blk_name,sample_name):
-    #blk, sampleファイルの読み込み
     blk=pd.read_csv(blk_name+'.exp',encoding="SHIFT_JIS",sep=('\t'),skiprows=16,usecols=[2,3,4,5,6,7,8,9], 
                 names=['52Cr','54Fe','56Fe','57Fe','58Fe','60Ni','63Cu','65Cu'])[1:21]
     sample=pd.read_csv(sample_name+'.exp',encoding="SHIFT_JIS",sep=('\t'),skiprows=16,usecols=[2,3,4,5,6,7,8,9], 
                    names=['52Cr','54Fe','56Fe','57Fe','58Fe','60Ni','63Cu','65Cu'])[1:61]
-    return(blk, sample)
+    return blk, sample
 
-
+#Ratio: 56Fe/54Feの計算
 def Ratio(blk,sample):
+    
     #原子量
-    Fe54_mass=53.939615
-    Fe56_mass=55.9349375
-    Fe57_mass=56.935394
-    Fe58_mass=57.9332756
-    Cu62_mass=61.92835
-    Cu63_mass=62.929601
-    Cu64_mass=63.92797
-    Cu65_mass=64.927794
+    Fe54_mass, Fe56_mass, Fe57_mass, Fe58_mass = 53.939615, 55.9349375, 56.935394, 57.9332756
+    Cu62_mass, Cu63_mass, Cu64_mass, Cu65_mass = 61.92835, 62.929601, 63.92797, 64.927794
+    
     #標準試料IRMMの同位体比(56Fe54Feは56Fe/54Feという意味)
-    IRMM56Fe54Fe=15.6985871271586
-    IRMM57Fe54Fe=0.362574568288854
-    IRMM58Fe54Fe=0.0482103610675039
-    IRMM65Cu63Cu=0.44513
-    IRMM54Cr52Cr=0.0282256620797479
+    IRMM56Fe54Fe, IRMM57Fe54Fe, IRMM58Fe54Fe, IRMM65Cu63Cu, IRMM54Cr52Cr = 15.6985871271586, 0.362574568288854, 0.0482103610675039, 0.44513, 0.0282256620797479
     
     #外れ値検定用の下限と上限を求める関数: Low_lim, High_lim
     def Low_lim(X):
@@ -41,7 +33,7 @@ def Ratio(blk,sample):
     blk1=blk1.astype('float64')
     
     # blk1 の外れ値検定: reject_judge1
-    #平均±2sd外のデータを外し、除去後に平均±2sdをもう一度求めるという操作を複数回行う。
+    #平均±2sd外のデータを外し、除去後に平均±2sdをもう一度求める操作を複数回行う。
     a=20
     global reject_judge12 #外から呼び出せるようグローバル変数にしておく
     reject_judge1=[blk1[:,0],blk1[:,1],blk1[:,2],blk1[:,3],blk1[:,4],blk1[:,5],blk1[:,6],blk1[:,7]]
@@ -78,7 +70,7 @@ def Ratio(blk,sample):
     sample1=sample.to_numpy()
     sample1=sample1.astype('float64')
     
-    # sample1 = sample1 -(blk1_ave)
+    # sample1 = sample1 - (blk1_ave)
     for i in range(60):
         for j in range(8):
             sample1[i,j]=sample1[i,j]-blk1_ave[j]
@@ -174,7 +166,7 @@ def Ratio(blk,sample):
     result.index=['average','2sd','2se','2se%']
     return result
 
-
+#Delta: デルタ値を計算する X:standard1, Y:sample, Z:standard2
 def Delta(X,Y,Z):
     X,Y,Z=X.to_numpy(),Y.to_numpy(),Z.to_numpy()
     IRMM=(X[0]+Z[0])/2
