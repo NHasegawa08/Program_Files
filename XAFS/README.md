@@ -7,4 +7,4 @@
 ## XANES_pre-edge_Analyzer
 - for pre-edge analysis
 - fitting Gaussian function to the pre-edge of the XANES and determine the peak center.
-- .xan file is available so far. 
+- ***.xan*** file is available so far. 
