@@ -7,5 +7,5 @@
 - 同一フォルダ内に両ファイルを配置してください。
 - Make sure you put this two files in the same folder.
 - 
-- R版とpython版がありますが中身は同一です。
+- R版(.R)とpython版(.py, .ipynb)がありますが中身は同一です。
 - There is almost no difference between ***.R*** and  ***.py & .ipynb*** file.
