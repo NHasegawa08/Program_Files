@@ -8,4 +8,4 @@
 - Make sure you put this two files in the same folder.
 - 
 - R版(.R)とpython版(.py, .ipynb)があります。(プログラムの中身は同一です)
-- There is almost no difference between ***.R*** and  ***.py & .ipynb*** file.
+- There is no difference between ***.R*** and  ***.py & .ipynb*** file.
