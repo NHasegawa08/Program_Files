@@ -8,6 +8,8 @@
 - for pre-edge analysis
 - fitting Gaussian function to the pre-edge of the XANES and determine the peak center.
 - ***.xan*** file is available so far. 
+- (追記20220704) R版の関数identifyの挙動が良くない(図をクリックしても点が選択できない)ことなどから、python版を作りました。(pre-edge_analysis.ipynb)
+
 ## 2022/1/13 update XANES_spectrum_Plot.ipynb & XANESFunc.py
 - for python only
 - BL-12Cのスペクトル描画用です。(2ファイルで１つ)
