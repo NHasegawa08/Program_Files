@@ -10,10 +10,11 @@
 - ***.xan*** file is available so far. 
 - (追記20220704) R版の関数identifyの挙動が良くない(図をクリックしても点が選択できない)ことなどから、python版を作りました。(pre-edge_analysis.ipynb)
 
-## 2022/1/13 update XANES_spectrum_Plot.ipynb & XANESFunc.py
+## 2022/1/13 update XANES_spectrum_Plot.ipynb ~~& XANESFunc.py~~
 - for python only
-- BL-12Cのスペクトル描画用です。(2ファイルで１つ)
+- BL-12Cのスペクトル描画用です。~~(2ファイルで１つ)~~
 - データの個数に関わらず好きな数だけスペクトルを描けます。
+- (20220708)内容を改変しました。
 ## 2022/6/8 XANES_Fitting
 - XANESスペクトルの2-3成分の線形結合フィッティングプログラム
 - 最適な成分の自動探索機能付
